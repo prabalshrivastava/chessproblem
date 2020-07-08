@@ -1,4 +1,4 @@
-package com.technogise.chessproblem;
+package com.technogise.chessproblem.enums;
 
 public enum Directions {
     TopLeft(-1, 1),
@@ -21,8 +21,8 @@ public enum Directions {
     tenOClock(-2,1),
     elevenOClock(-1,2);
 
-    int x;
-    int y;
+    public int x;
+    public int y;
 
     Directions(int x, int y) {
         this.x = x;

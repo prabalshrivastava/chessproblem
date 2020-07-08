@@ -1,12 +1,9 @@
-package com.technogise.chessproblem;
+package com.technogise.chessproblem.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +14,7 @@ public class Block {
     String label;
     String piece;
 
-    Block(int x, int y) {
+    public Block(int x, int y) {
         this.x = x;
         this.y = y;
         label = String.format("%s%s", (char) ('A' + x - 1), y);

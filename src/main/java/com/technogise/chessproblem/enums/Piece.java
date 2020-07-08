@@ -1,11 +1,9 @@
-package com.technogise.chessproblem;
-
-import lombok.Data;
+package com.technogise.chessproblem.enums;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.technogise.chessproblem.Directions.*;
+import static com.technogise.chessproblem.enums.Directions.*;
 
 public enum Piece {
     KING(Arrays.asList(TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight), false),

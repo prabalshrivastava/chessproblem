@@ -1,5 +1,8 @@
 package com.technogise.chessproblem;
 
+import com.technogise.chessproblem.dto.Block;
+import com.technogise.chessproblem.enums.Directions;
+import com.technogise.chessproblem.enums.Piece;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
@@ -26,10 +29,13 @@ public class ChessproblemApplication {
 
     private static List<Block> runChess(String input) {
         int n = 8;
-        Map<Block, List<Integer>> chessBoard = populateChessBoard(n);
         String[] inputArray = input.split(" ");
         String piece = inputArray[0];
         String position = inputArray[1];
+
+
+
+        Map<Block, List<Integer>> chessBoard = populateChessBoard(n);
         int xCoordinateOfPiece = position.charAt(0) - 'A' + 1;
         int yCoordinateOfPiece = Integer.parseInt(Character.toString(position.charAt(1)));
         System.out.println(xCoordinateOfPiece + "-" + yCoordinateOfPiece);
