@@ -16,13 +16,15 @@ import java.util.Map;
 @Component
 public class Chess {
 
-    public List<Block> runChess(String input) throws ChessException {
+    public List<Block> runChess(String input, int n) throws ChessException {
 
         if (StringUtils.isBlank(input)) {
             throw new ChessException("Invalid Input Provided");
         }
+        if (n < 1 || n > 100) {
+            throw new ChessException("Invalid Size of chessboard");
+        }
 
-        int n = 8;
 
         String position;
         Piece currentPiece;
@@ -37,7 +39,11 @@ public class Chess {
 
         Map<Block, List<Integer>> chessBoard = populateChessBoard(n);
         int xCoordinateOfPiece = position.charAt(0) - 'A' + 1;
-        int yCoordinateOfPiece = Integer.parseInt(Character.toString(position.charAt(1)));
+        int yCoordinateOfPiece = Integer.parseInt(position.replace(position.charAt(0) + "", ""));
+
+        if (xCoordinateOfPiece > n || yCoordinateOfPiece > n) {
+            throw new ChessException("Position outside the current Chessboard");
+        }
         System.out.println(xCoordinateOfPiece + "-" + yCoordinateOfPiece);
 
         List<Block> possibleBlocks = new ArrayList<>();
