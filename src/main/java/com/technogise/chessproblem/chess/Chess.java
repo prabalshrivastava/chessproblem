@@ -3,6 +3,7 @@ package com.technogise.chessproblem.chess;
 import com.technogise.chessproblem.dto.Block;
 import com.technogise.chessproblem.enums.Directions;
 import com.technogise.chessproblem.enums.Piece;
+import com.technogise.chessproblem.exception.ChessException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -15,20 +16,30 @@ import java.util.Map;
 @Component
 public class Chess {
 
-    public List<Block> runChess(String input) {
+    public List<Block> runChess(String input) throws ChessException {
+
+        if (StringUtils.isBlank(input)) {
+            throw new ChessException("Invalid Input Provided");
+        }
+
         int n = 8;
-        String[] inputArray = input.split(" ");
-        String piece = inputArray[0];
-        String position = inputArray[1];
 
-
+        String position;
+        Piece currentPiece;
+        try {
+            String[] inputArray = input.split(" ");
+            String piece = inputArray[0];
+            position = inputArray[1];
+            currentPiece = Piece.valueOf(piece.toUpperCase());
+        } catch (Exception e) {
+            throw new ChessException("Invalid Input Provided");
+        }
 
         Map<Block, List<Integer>> chessBoard = populateChessBoard(n);
         int xCoordinateOfPiece = position.charAt(0) - 'A' + 1;
         int yCoordinateOfPiece = Integer.parseInt(Character.toString(position.charAt(1)));
         System.out.println(xCoordinateOfPiece + "-" + yCoordinateOfPiece);
 
-        Piece currentPiece = Piece.valueOf(piece.toUpperCase());
         List<Block> possibleBlocks = new ArrayList<>();
         if (!currentPiece.acrossBoard) {
             for (Directions possibleDirections : currentPiece.possibleMoves) {
