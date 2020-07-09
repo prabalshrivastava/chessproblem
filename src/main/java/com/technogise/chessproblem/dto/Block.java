@@ -14,6 +14,10 @@ public class Block {
     String label;
     String piece;
 
+    public Block(String label) {
+        this.label = label;
+    }
+
     public Block(int x, int y) {
         this.x = x;
         this.y = y;
